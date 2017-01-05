@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.PayLogMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.PayLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+    <result column="merchant" property="merchant" jdbcType="VARCHAR" />
+    <result column="tradeNum" property="tradenum" jdbcType="VARCHAR" />
+    <result column="tradeName" property="tradename" jdbcType="VARCHAR" />
+    <result column="tradeTime" property="tradetime" jdbcType="TIMESTAMP" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="orderType" property="ordertype" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="callbackUrl" property="callbackurl" jdbcType="VARCHAR" />
+    <result column="notifyUrl" property="notifyurl" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="userType" property="usertype" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="orderId" property="orderid" jdbcType="VARCHAR" />
+    <result column="period" property="period" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, version, merchant, tradeNum, tradeName, tradeTime, amount, orderType, currency, 
+    callbackUrl, notifyUrl, userId, userType, sign, orderId, period, source
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pay_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.PayLog" >
+    insert into pay_log (id, version, merchant, 
+      tradeNum, tradeName, tradeTime, 
+      amount, orderType, currency, 
+      callbackUrl, notifyUrl, userId, 
+      userType, sign, orderId, 
+      period, source)
+    values (#{id,jdbcType=INTEGER}, #{version,jdbcType=VARCHAR}, #{merchant,jdbcType=VARCHAR}, 
+      #{tradenum,jdbcType=VARCHAR}, #{tradename,jdbcType=VARCHAR}, #{tradetime,jdbcType=TIMESTAMP}, 
+      #{amount,jdbcType=DECIMAL}, #{ordertype,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, 
+      #{callbackurl,jdbcType=VARCHAR}, #{notifyurl,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{usertype,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, 
+      #{period,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.PayLog" >
+    insert into pay_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="merchant != null" >
+        merchant,
+      </if>
+      <if test="tradenum != null" >
+        tradeNum,
+      </if>
+      <if test="tradename != null" >
+        tradeName,
+      </if>
+      <if test="tradetime != null" >
+        tradeTime,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="ordertype != null" >
+        orderType,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="callbackurl != null" >
+        callbackUrl,
+      </if>
+      <if test="notifyurl != null" >
+        notifyUrl,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="usertype != null" >
+        userType,
+      </if>
+      <if test="sign != null" >
+        sign,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="period != null" >
+        period,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant != null" >
+        #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="tradenum != null" >
+        #{tradenum,jdbcType=VARCHAR},
+      </if>
+      <if test="tradename != null" >
+        #{tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertype != null" >
+        #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackurl != null" >
+        #{callbackurl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyurl != null" >
+        #{notifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.PayLog" >
+    update pay_log
+    <set >
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant != null" >
+        merchant = #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="tradenum != null" >
+        tradeNum = #{tradenum,jdbcType=VARCHAR},
+      </if>
+      <if test="tradename != null" >
+        tradeName = #{tradename,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        tradeTime = #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="ordertype != null" >
+        orderType = #{ordertype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="callbackurl != null" >
+        callbackUrl = #{callbackurl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyurl != null" >
+        notifyUrl = #{notifyurl,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="usertype != null" >
+        userType = #{usertype,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null" >
+        period = #{period,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.PayLog" >
+    update pay_log
+    set version = #{version,jdbcType=VARCHAR},
+      merchant = #{merchant,jdbcType=VARCHAR},
+      tradeNum = #{tradenum,jdbcType=VARCHAR},
+      tradeName = #{tradename,jdbcType=VARCHAR},
+      tradeTime = #{tradetime,jdbcType=TIMESTAMP},
+      amount = #{amount,jdbcType=DECIMAL},
+      orderType = #{ordertype,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      callbackUrl = #{callbackurl,jdbcType=VARCHAR},
+      notifyUrl = #{notifyurl,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      userType = #{usertype,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      orderId = #{orderid,jdbcType=VARCHAR},
+      period = #{period,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectPayLog" resultMap="BaseResultMap" parameterType="com.jzfq.fms.domain.PayLog" >
+    select
+    <include refid="Base_Column_List" />
+    from pay_log
+    where tradeNum = #{tradenum,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- ++++++++++++++商城===>账务++++++++++++++ -->
+	<!-- 从商城获取历史订单开始 -->
+	<bean id="grabHistoryWorker" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false"/>
+		<property name="targetObject" ref="grabValidOrderTask"/>
+		<property name="targetMethod" value="getHistoryData"/>
+	</bean>
+	<bean id="getHistoryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="grabHistoryWorker"/>
+		<property name="cronExpression" value="*/2 * * * * ?"/>
+		<!--<property name="cronExpression" value="0 */1 * * * ?"/>-->
+	</bean>
+	<!-- 从商城获取历史订单结束 -->
+	<!-- ++++++++++++++商城===>账务++++++++++++++ -->
+
+
+
+
+	<!-- ++++++++++++++账务++++++++++++++ -->
+	<!-- 计算逾期数据开始-->
+    <bean id="calOverDueFeeWorker" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="concurrent" value="false"/>
+        <property name="targetObject" ref="generateRepayPlanTask"/>
+        <property name="targetMethod" value="calculateOverdue"/>
+    </bean>
+    <bean id="calOverDueFeeTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="calOverDueFeeWorker"/>
+        <property name="cronExpression" value="0 0 1 * * ?"/>
+		<!--<property name="cronExpression" value="*/50 * * * * ?"/>-->
+    </bean>
+    <!-- 计算逾期数据结束-->
+	<!-- ++++++++++++++账务++++++++++++++ -->
+
+
+
+	<!-- ++++++++++++++账务===>催收++++++++++++++ -->
+	<!-- 每日为催收系统推送逾期的还款计划开始-->
+	<bean id="pushOverdueRepayPlanForDayWorker" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false"/>
+		<property name="targetObject" ref="generateRepayPlanTask"/>
+		<property name="targetMethod" value="pushOverdueRepayPlanForDay"/>
+	</bean>
+	<bean id="pushOverdueRepayPlanForDayTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="pushOverdueRepayPlanForDayWorker"/>
+		<!--<property name="cronExpression" value="0 0 2 * * ?"/>-->
+		<property name="cronExpression" value="*/1 * * * * ?"/>
+	</bean>
+	<!-- 每日为催收系统推送逾期的还款计划结束-->
+
+	<!-- 同步历史逾期的还款计划给催收系统开始-->
+	<bean id="pushOverdueRepayPlanForHistoryWorker" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false"/>
+		<property name="targetObject" ref="generateRepayPlanTask"/>
+		<property name="targetMethod" value="pushOverdueRepayPlanForHistory"/>
+	</bean>
+
+	<bean id="pushOverdueRepayPlanForHistoryTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="pushOverdueRepayPlanForHistoryWorker"/>
+		<!--<property name="cronExpression" value="0 0 4 * * ?"/>-->
+		<property name="cronExpression" value="*/4 * * * * ?"/>
+	</bean>
+	<!-- 同步历史逾期的还款计划给催收系统结束-->
+	<!-- ++++++++++++++账务===>催收++++++++++++++ -->
+
+	<!-- 将未推送给风控的审批单，重新推送配置开始 -->
+	<bean id="quotaApprovalWorker" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="false"/>
+		<property name="targetObject" ref="quotaApprovalTask"/>
+		<property name="targetMethod" value="execute"/>
+	</bean>
+
+	<bean id="quotaApprovalTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="quotaApprovalWorker"/>
+		<property name="cronExpression" value="0 0/5 0 * * ?"/>
+	</bean>
+	<!-- 将未推送给风控的审批单，重新推送配置结束 -->
+
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="triggers">
+    		<list>
+    			<!--<ref bean="generateRepayPlanTrigger"/>-->
+				<ref bean="getHistoryTrigger"/>
+				<!--<ref bean="pushOverdueRepayPlanForDayTrigger"/>-->
+				<!--<ref bean="pushOverdueRepayPlanForHistoryTrigger"/>-->
+				<ref bean="calOverDueFeeTrigger"/>
+                <!--<ref bean="quotaApprovalTaskTrigger"/>-->
+    		</list>
+    	</property>
+    </bean>
+    
+</beans>

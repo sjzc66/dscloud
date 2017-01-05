@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="recommendation_code" property="recommendationCode" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="white_line" property="whiteLine" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, phone, id_card, recommendation_code, customer_type, create_time, white_line
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.Customer" >
+    insert into customer (id, customer_id, username, phone,
+      id_card, recommendation_code, customer_type, 
+      create_time, white_line)
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER},#{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR}, #{recommendationCode,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{whiteLine,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="recommendationCode != null" >
+        recommendation_code,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="whiteLine != null" >
+        white_line,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{icustomerId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationCode != null" >
+        #{recommendationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="whiteLine != null" >
+        #{whiteLine,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.Customer" >
+    update customer
+    <set >
+      <if test="customerId != null" >
+        customerId = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendationCode != null" >
+        recommendation_code = #{recommendationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="whiteLine != null" >
+        white_line = #{whiteLine,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.Customer" >
+    update customer
+    set username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      recommendation_code = #{recommendationCode,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      white_line = #{whiteLine,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

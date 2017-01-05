@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.FacePatchMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.FacePatch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="application_time" property="applicationTime" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="product_type" property="productType" jdbcType="TINYINT" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="TINYINT" />
+    <result column="approval_status" property="approvalStatus" jdbcType="TINYINT" />
+    <result column="recommend_code" property="recommendCode" jdbcType="VARCHAR" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="TIMESTAMP" />
+    <result column="img_tail" property="imgTail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, application_time, phone, product_type, username, id_number, customer_type, 
+    approval_status, recommend_code, repayment_date, img_tail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from face_patch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from face_patch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.FacePatch" >
+    insert into face_patch (id, order_id, application_time, 
+      phone, product_type, username, 
+      id_number, customer_type, approval_status, 
+      recommend_code, repayment_date, img_tail
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{applicationTime,jdbcType=TIMESTAMP}, 
+      #{phone,jdbcType=VARCHAR}, #{productType,jdbcType=TINYINT}, #{username,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{customerType,jdbcType=TINYINT}, #{approvalStatus,jdbcType=TINYINT}, 
+      #{recommendCode,jdbcType=VARCHAR}, #{repaymentDate,jdbcType=TIMESTAMP}, #{imgTail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.FacePatch" >
+    insert into face_patch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="applicationTime != null" >
+        application_time,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="productType != null" >
+        product_type,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="approvalStatus != null" >
+        approval_status,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code,
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="imgTail != null" >
+        img_tail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTime != null" >
+        #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=TINYINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=TINYINT},
+      </if>
+      <if test="approvalStatus != null" >
+        #{approvalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgTail != null" >
+        #{imgTail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.FacePatch" >
+    update face_patch
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationTime != null" >
+        application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        product_type = #{productType,jdbcType=TINYINT},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=TINYINT},
+      </if>
+      <if test="approvalStatus != null" >
+        approval_status = #{approvalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgTail != null" >
+        img_tail = #{imgTail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.FacePatch" >
+    update face_patch
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=TINYINT},
+      username = #{username,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=TINYINT},
+      approval_status = #{approvalStatus,jdbcType=TINYINT},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      repayment_date = #{repaymentDate,jdbcType=TIMESTAMP},
+      img_tail = #{imgTail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="findFacePatchList" parameterType="com.jzfq.fms.common.common.PageVo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM face_patch WHERE 1=1
+    <if test="vo.parameters.username!=null">
+      and username LIKE CONCAT(#{vo.parameters.username},'%' )
+    </if>
+    <if test="vo.parameters.orderId!=null">
+      and order_id LIKE CONCAT(#{vo.parameters.orderId},'%' )
+    </if>
+    <if test="vo.parameters.phone!=null">
+      and phone LIKE CONCAT(#{vo.parameters.phone},'%' )
+    </if>
+    <if test="vo.parameters.approvalStatus!=null and vo.parameters.approvalStatus!=''">
+      and approval_status = #{vo.parameters.approvalStatus}
+    </if>
+
+    <if test="vo.sort!=null">
+       order by
+       <if test="vo.sort.orderId!=null">
+          order_id ${vo.sort.orderId}
+       </if>
+       <if test="vo.sort.username!=null">
+          username ${vo.sort.username}
+       </if>
+       <if test="vo.sort.applicationTime!=null">
+          application_time ${vo.sort.applicationTime}
+       </if>
+    </if>
+
+  </select>
+
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM face_patch WHERE order_id=#{orderId}
+  </select>
+
+</mapper>

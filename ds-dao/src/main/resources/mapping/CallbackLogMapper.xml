@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.CallbackLogMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.CallbackLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tradeNum" property="tradenum" jdbcType="VARCHAR" />
+    <result column="tradeType" property="tradetype" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="payType" property="paytype" jdbcType="CHAR" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="tradeTime" property="tradetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tradeNum, tradeType, status, payType, amount, currency, tradeTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from callback_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from callback_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.CallbackLog" >
+    insert into callback_log (id, tradeNum, tradeType, 
+      status, payType, amount, currency, 
+      tradeTime)
+    values (#{id,jdbcType=INTEGER}, #{tradenum,jdbcType=VARCHAR}, #{tradetype,jdbcType=CHAR}, 
+      #{status,jdbcType=CHAR}, #{paytype,jdbcType=CHAR}, #{amount,jdbcType=BIGINT}, #{currency,jdbcType=VARCHAR}, 
+      #{tradetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.CallbackLog" >
+    insert into callback_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tradenum != null" >
+        tradeNum,
+      </if>
+      <if test="tradetype != null" >
+        tradeType,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="tradetime != null" >
+        tradeTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tradenum != null" >
+        #{tradenum,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetype != null" >
+        #{tradetype,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.CallbackLog" >
+    update callback_log
+    <set >
+      <if test="tradenum != null" >
+        tradeNum = #{tradenum,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetype != null" >
+        tradeType = #{tradetype,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tradetime != null" >
+        tradeTime = #{tradetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.CallbackLog" >
+    update callback_log
+    set tradeNum = #{tradenum,jdbcType=VARCHAR},
+      tradeType = #{tradetype,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      payType = #{paytype,jdbcType=CHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      currency = #{currency,jdbcType=VARCHAR},
+      tradeTime = #{tradetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectCallbackLog" parameterType="com.jzfq.fms.domain.CallbackLog" resultMap="BaseResultMap">
+        SELECT * from callback_log WHERE 1=1
+        <if test="tradeNum!=null">
+            AND tradeNum=#{tradeNum,jdbcType=CHAR}
+        </if>
+    </select>
+</mapper>

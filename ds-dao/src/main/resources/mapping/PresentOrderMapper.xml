@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.PresentOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.PresentOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="repay_date" property="repayDate" jdbcType="TIMESTAMP" />
+    <result column="loan_limit" property="loanLimit" jdbcType="DECIMAL" />
+    <result column="periods" property="periods" jdbcType="INTEGER" />
+    <result column="interest" property="interest" jdbcType="DECIMAL" />
+    <result column="product_code" property="productCode" jdbcType="INTEGER" />
+    <result column="monthly" property="monthly" jdbcType="DECIMAL" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="TINYINT" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+    <result column="recommend_code" property="recommendCode" jdbcType="VARCHAR" />
+    <result column="whitebar_account" property="whitebarAccount" jdbcType="CHAR" />
+    <result column="mall_account" property="mallAccount" jdbcType="CHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, customer_id, order_time, repay_date, loan_limit, periods, interest, 
+    product_code, monthly, username, phone, source, order_status, bank_code, bank_name, 
+    bank_address, recommend_code, whitebar_account, mall_account, product_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from present_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from present_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.PresentOrder" >
+    insert into present_order (id, order_id, customer_id, 
+      order_time, repay_date, loan_limit, 
+      periods, interest, product_code, 
+      monthly, username, phone, 
+      source, order_status, bank_code, 
+      bank_name, bank_address, recommend_code, 
+      whitebar_account, mall_account, product_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{repayDate,jdbcType=TIMESTAMP}, #{loanLimit,jdbcType=DECIMAL}, 
+      #{periods,jdbcType=INTEGER}, #{interest,jdbcType=DECIMAL}, #{productCode,jdbcType=VARCHAR},
+      #{monthly,jdbcType=DECIMAL}, #{username,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{source,jdbcType=TINYINT}, #{orderStatus,jdbcType=TINYINT}, #{bankCode,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{recommendCode,jdbcType=VARCHAR}, 
+      #{whitebarAccount,jdbcType=DECIMAL}, #{mallAccount,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.PresentOrder" >
+    insert into present_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="repayDate != null" >
+        repay_date,
+      </if>
+      <if test="loanLimit != null" >
+        loan_limit,
+      </if>
+      <if test="periods != null" >
+        periods,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="monthly != null" >
+        monthly,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code,
+      </if>
+      <if test="whitebarAccount != null" >
+        whitebar_account,
+      </if>
+      <if test="mallAccount != null" >
+        mall_account,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayDate != null" >
+        #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanLimit != null" >
+        #{loanLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=INTEGER},
+      </if>
+      <if test="monthly != null" >
+        #{monthly,jdbcType=DECIMAL},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="whitebarAccount != null" >
+        #{whitebarAccount,jdbcType=CHAR},
+      </if>
+      <if test="mallAccount != null" >
+        #{mallAccount,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.PresentOrder" >
+    update present_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayDate != null" >
+        repay_date = #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanLimit != null" >
+        loan_limit = #{loanLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="periods != null" >
+        periods = #{periods,jdbcType=INTEGER},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=INTEGER},
+      </if>
+      <if test="monthly != null" >
+        monthly = #{monthly,jdbcType=DECIMAL},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=TINYINT},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="whitebarAccount != null" >
+        whitebar_account = #{whitebarAccount,jdbcType=CHAR},
+      </if>
+      <if test="mallAccount != null" >
+        mall_account = #{mallAccount,jdbcType=CHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.PresentOrder" >
+    update present_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      repay_date = #{repayDate,jdbcType=TIMESTAMP},
+      loan_limit = #{loanLimit,jdbcType=DECIMAL},
+      periods = #{periods,jdbcType=INTEGER},
+      interest = #{interest,jdbcType=DECIMAL},
+      product_code = #{productCode,jdbcType=INTEGER},
+      monthly = #{monthly,jdbcType=DECIMAL},
+      username = #{username,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      source = #{source,jdbcType=TINYINT},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      whitebar_account = #{whitebarAccount,jdbcType=CHAR},
+      mall_account = #{mallAccount,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findPresentOrderList" parameterType="com.jzfq.fms.common.common.PageVo" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    FROM `present_order` WHERE 1=1
+
+    <if test="vo.parameters.orderId!=null and vo.parameters.orderId!=''">
+      and order_id =#{vo.parameters.orderId}
+    </if>
+
+    <if test="vo.parameters.phone!=null and vo.parameters.phone!=''">
+      and phone =#{vo.parameters.phone}
+    </if>
+    <if test="vo.parameters.username!=null and vo.parameters.username!=''">
+      and username LIKE CONCAT(#{vo.parameters.username},'%' )
+    </if>
+    <if test="vo.parameters.orderStatus!=null and vo.parameters.orderStatus!=''">
+      and order_status =#{vo.parameters.orderStatus}
+    </if>
+    <if test="vo.parameters.orderTime!=null and vo.parameters.orderTime!='' ">
+      and order_time<![CDATA[>= ]]>CONCAT(#{vo.parameters.orderTime},' 00:00:00')
+    </if>
+    <if test="vo.parameters.orderTimeEnd!=null and vo.parameters.orderTimeEnd!='' ">
+      and order_time<![CDATA[<= ]]>CONCAT(#{vo.parameters.orderTimeEnd},' 23:59:59')
+    </if>
+    <if test="vo.parameters.source!=null and vo.parameters.source!=''">
+      and source =#{vo.parameters.source}
+    </if>
+
+      <if test="vo.sort.orderId!=null">
+        order by order_id ${vo.sort.orderId}
+      </if>
+      <if test="vo.sort.orderTime!=null">
+        order by order_time ${vo.sort.orderTime}
+      </if>
+      <if test="vo.sort.username!=null">
+        order by username ${vo.sort.username}
+      </if>
+      <if test="vo.sort.phone!=null">
+        order by phone ${vo.sort.phone}
+      </if>
+      <if test="vo.sort.productName!=null">
+       order by  product_name ${vo.sort.productName}
+      </if>
+      <if test="vo.sort.monthly!=null">
+       order by  monthly ${vo.sort.monthly}
+      </if>
+      <if test="vo.sort.source!=null">
+        order by source ${vo.sort.source}
+      </if>
+      <if test="vo.sort.orderStatus!=null">
+        order by order_status ${vo.sort.orderStatus}
+      </if>
+      <if test="vo.sort.recommendCode!=null">
+        order by recommend_code ${vo.sort.recommend_code}
+      </if>
+  </select>
+</mapper>

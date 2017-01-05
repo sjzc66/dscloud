@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzfq.fms.dao.ValidOrderMapper">
+    <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.ValidOrder" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="rate" property="rate" jdbcType="DECIMAL" />
+        <result column="amount" property="amount" jdbcType="DECIMAL" />
+        <result column="period" property="period" jdbcType="TINYINT" />
+        <result column="already_repaid_period" property="alreadyRepaidPeriod" jdbcType="TINYINT" />
+        <result column="type" property="type" jdbcType="TINYINT" />
+        <result column="repay_date" property="repayDate" jdbcType="TIMESTAMP" />
+        <result column="store_order_time" property="storeOrderTime" jdbcType="TIMESTAMP" />
+        <result column="behead" property="behead" jdbcType="TINYINT" />
+        <result column="is_deal" property="isDeal" jdbcType="TINYINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="del_flag" property="delFlag" jdbcType="TINYINT" />
+        <result column="free_interest" property="freeInterest" jdbcType="TINYINT" />
+        <result column="source" property="source" jdbcType="TINYINT" />
+        <result column="capital_side" property="capitalSide" jdbcType="TINYINT" />
+        <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+        <result column="customer_json" property="customerJson" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, order_id, rate, amount, period, already_repaid_period, type, repay_date, store_order_time,
+        behead, is_deal, create_time, update_time, del_flag, free_interest, source, capital_side,
+        customer_id, customer_json,title
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from valid_order
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from valid_order
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.jzfq.fms.domain.ValidOrder" >
+        insert into valid_order (id, order_id, rate,
+        amount, period, already_repaid_period,
+        type, repay_date, store_order_time,
+        behead, is_deal, create_time,
+        update_time, del_flag, free_interest,
+        source, capital_side, customer_id,
+        customer_json,title)
+        values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{rate,jdbcType=DECIMAL},
+        #{amount,jdbcType=DECIMAL}, #{period,jdbcType=TINYINT}, #{alreadyRepaidPeriod,jdbcType=TINYINT},
+        #{type,jdbcType=TINYINT}, #{repayDate,jdbcType=TIMESTAMP}, #{storeOrderTime,jdbcType=TIMESTAMP},
+        #{behead,jdbcType=TINYINT}, #{isDeal,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT}, #{freeInterest,jdbcType=TINYINT},
+        #{source,jdbcType=TINYINT}, #{capitalSide,jdbcType=TINYINT}, #{customerId,jdbcType=INTEGER},
+        #{customerJson,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jzfq.fms.domain.ValidOrder" >
+        insert into valid_order
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="rate != null" >
+                rate,
+            </if>
+            <if test="amount != null" >
+                amount,
+            </if>
+            <if test="period != null" >
+                period,
+            </if>
+            <if test="alreadyRepaidPeriod != null" >
+                already_repaid_period,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="repayDate != null" >
+                repay_date,
+            </if>
+            <if test="storeOrderTime != null" >
+                store_order_time,
+            </if>
+            <if test="behead != null" >
+                behead,
+            </if>
+            <if test="isDeal != null" >
+                is_deal,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+            <if test="freeInterest != null" >
+                free_interest,
+            </if>
+            <if test="source != null" >
+                source,
+            </if>
+            <if test="capitalSide != null" >
+                capital_side,
+            </if>
+            <if test="customerId != null" >
+                customer_id,
+            </if>
+            <if test="customerJson != null" >
+                customer_json,
+            </if>
+            <if test="title!= null" >
+                title,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderId != null" >
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="rate != null" >
+                #{rate,jdbcType=DECIMAL},
+            </if>
+            <if test="amount != null" >
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="period != null" >
+                #{period,jdbcType=TINYINT},
+            </if>
+            <if test="alreadyRepaidPeriod != null" >
+                #{alreadyRepaidPeriod,jdbcType=TINYINT},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="repayDate != null" >
+                #{repayDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="storeOrderTime != null" >
+                #{storeOrderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="behead != null" >
+                #{behead,jdbcType=TINYINT},
+            </if>
+            <if test="isDeal != null" >
+                #{isDeal,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="freeInterest != null" >
+                #{freeInterest,jdbcType=TINYINT},
+            </if>
+            <if test="source != null" >
+                #{source,jdbcType=TINYINT},
+            </if>
+            <if test="capitalSide != null" >
+                #{capitalSide,jdbcType=TINYINT},
+            </if>
+            <if test="customerId != null" >
+                #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="customerJson != null" >
+                #{customerJson,jdbcType=VARCHAR},
+            </if>
+            <if test="title!= null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.ValidOrder" >
+        update valid_order
+        <set >
+            <if test="orderId != null" >
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="rate != null" >
+                rate = #{rate,jdbcType=DECIMAL},
+            </if>
+            <if test="amount != null" >
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="period != null" >
+                period = #{period,jdbcType=TINYINT},
+            </if>
+            <if test="alreadyRepaidPeriod != null" >
+                already_repaid_period = #{alreadyRepaidPeriod,jdbcType=TINYINT},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="repayDate != null" >
+                repay_date = #{repayDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="storeOrderTime != null" >
+                store_order_time = #{storeOrderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="behead != null" >
+                behead = #{behead,jdbcType=TINYINT},
+            </if>
+            <if test="isDeal != null" >
+                is_deal = #{isDeal,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=TINYINT},
+            </if>
+            <if test="freeInterest != null" >
+                free_interest = #{freeInterest,jdbcType=TINYINT},
+            </if>
+            <if test="source != null" >
+                source = #{source,jdbcType=TINYINT},
+            </if>
+            <if test="capitalSide != null" >
+                capital_side = #{capitalSide,jdbcType=TINYINT},
+            </if>
+            <if test="customerId != null" >
+                customer_id = #{customerId,jdbcType=INTEGER},
+            </if>
+            <if test="customerJson != null" >
+                customer_json = #{customerJson,jdbcType=VARCHAR},
+            </if>
+            <if test="title!= null" >
+                title= #{title,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.ValidOrder" >
+    update valid_order
+    set order_id = #{orderId,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      period = #{period,jdbcType=TINYINT},
+      already_repaid_period = #{alreadyRepaidPeriod,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      repay_date = #{repayDate,jdbcType=TIMESTAMP},
+      store_order_time = #{storeOrderTime,jdbcType=TIMESTAMP},
+      behead = #{behead,jdbcType=TINYINT},
+      is_deal = #{isDeal,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      free_interest = #{freeInterest,jdbcType=TINYINT},
+      source = #{source,jdbcType=TINYINT},
+      capital_side = #{capitalSide,jdbcType=TINYINT},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      customer_json = #{customerJson,jdbcType=VARCHAR},
+      title= #{title,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="queryValidOrderListByIsDeal" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from valid_order
+        where is_deal = 0 limit 500
+    </select>
+
+    <select id="getOrderByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM valid_order WHERE order_id = #{orderId}
+    </select>
+
+    <select id="findValidOrderList" parameterType="com.jzfq.fms.common.common.PageVo" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM valid_order WHERE 1 = 1
+        <if test="vo.parameters.orderId!=null">
+            and order_id LIKE CONCAT(#{vo.parameters.orderId},'%' )
+        </if>
+        <if test="vo.parameters.behead!=null">
+            and behead = #{vo.parameters.behead}
+        </if>
+        <if test="vo.parameters.freeInterest!=null">
+            and free_interest = #{vo.parameters.freeInterest}
+        </if>
+        <if test="vo.parameters.orderTime!=null and vo.parameters.orderTime!=''">
+            and store_order_time<![CDATA[>= ]]>CONCAT(#{vo.parameters.orderTime},' 00:00:00')
+        </if>
+        <if test="vo.parameters.orderTimeEnd!=null and vo.parameters.orderTimeEnd!=''">
+            and store_order_time<![CDATA[<= ]]>CONCAT(#{vo.parameters.orderTimeEnd},' 23:59:59')
+        </if>
+        <if test="vo.sort!=null">
+            order by
+            <if test="vo.sort.orderId!=null">
+                order_id ${vo.sort.orderId}
+            </if>
+            <if test="vo.sort.storeOrderTime!=null">
+                store_order_time ${vo.sort.storeOrderTime}
+            </if>
+
+        </if>
+    </select>
+
+</mapper>

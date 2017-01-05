@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jzfq.fms.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.Product">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prduct_id" jdbcType="VARCHAR" property="prductId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="period" jdbcType="INTEGER" property="period" />
+    <result column="month_rate" jdbcType="DECIMAL" property="monthRate" />
+    <result column="year_rate" jdbcType="DECIMAL" property="yearRate" />
+    <result column="apply_product" jdbcType="INTEGER" property="applyProduct" />
+    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="parent_name" property="parentName" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="day_rate" property="dayRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, prduct_id, product_name, period, month_rate, year_rate, apply_product, product_desc, 
+    create_time, update_time, is_deleted, parent_id, parent_name, creater, day_rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER} AND is_deleted = 0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    UPDATE product SET is_deleted = 1
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.Product">
+    insert into product (id, prduct_id, product_name, 
+      period, month_rate, year_rate, 
+      apply_product, product_desc, create_time, 
+      update_time, is_deleted, parent_id,
+      parent_name, creater, day_rate)
+    values (#{id,jdbcType=INTEGER}, #{prductId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{period,jdbcType=INTEGER}, #{monthRate,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, 
+      #{applyProduct,jdbcType=INTEGER}, #{productDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER},
+      #{parentName,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{dayRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="prductId != null">
+        prduct_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="period != null">
+        period,
+      </if>
+      <if test="monthRate != null">
+        month_rate,
+      </if>
+      <if test="yearRate != null">
+        year_rate,
+      </if>
+      <if test="applyProduct != null">
+        apply_product,
+      </if>
+      <if test="productDesc != null">
+        product_desc,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentName != null" >
+        parent_name,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="dayRate != null" >
+        day_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prductId != null">
+        #{prductId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        #{period,jdbcType=INTEGER},
+      </if>
+      <if test="monthRate != null">
+        #{monthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="applyProduct != null">
+        #{applyProduct,jdbcType=INTEGER},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="dayRate != null" >
+        #{dayRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.Product">
+    update product
+    <set>
+      <if test="prductId != null">
+        prduct_id = #{prductId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="period != null">
+        period = #{period,jdbcType=INTEGER},
+      </if>
+      <if test="monthRate != null">
+        month_rate = #{monthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        year_rate = #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="applyProduct != null">
+        apply_product = #{applyProduct,jdbcType=INTEGER},
+      </if>
+      <if test="productDesc != null">
+        product_desc = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null" >
+        is_deleted = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentName != null" >
+        parent_name = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="dayRate != null" >
+        day_rate = #{dayRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.Product">
+    update product
+    set prduct_id = #{prductId,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      period = #{period,jdbcType=INTEGER},
+      month_rate = #{monthRate,jdbcType=DECIMAL},
+      year_rate = #{yearRate,jdbcType=DECIMAL},
+      apply_product = #{applyProduct,jdbcType=INTEGER},
+      product_desc = #{productDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      day_rate = #{dayRate,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getProduct" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM product where apply_product = #{applyProduct}
+    and period = #{period}
+  </select>
+
+  <select id="getProducts" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM product WHERE is_deleted = 0
+  </select>
+
+  <select id="getMonthProductList" parameterType="com.jzfq.fms.common.common.PageVo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM product WHERE is_deleted = 0 AND parent_id != 1
+    <if test="vo.parameters.prductId !='' and vo.parameters.prductId != null">
+      and prduct_id=#{vo.parameters.prductId}
+    </if>
+    <if test="vo.parameters.productName != '' and vo.parameters.productName != null">
+      and product_name like  CONCAT(#{vo.parameters.productName},'%' )
+    </if>
+
+    <if test="vo.sort.prductId !='' and vo.sort.prductId !=null">
+      order by prduct_id ${vo.sort.prductId}
+    </if>
+
+    <if test="vo.sort.productName != '' and vo.sort.productName != null">
+      order by product_name ${vo.sort.productName}
+    </if>
+
+  </select>
+  <select id="getDayProductList" parameterType="com.jzfq.fms.common.common.PageVo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM product WHERE is_deleted = 0 AND parent_id = 1
+    <if test="vo.parameters.prductId !='' and vo.parameters.prductId != null">
+      and prduct_id=#{vo.parameters.prductId}
+    </if>
+    <if test="vo.parameters.productName != '' and vo.parameters.productName != null">
+      and product_name like  CONCAT(#{vo.parameters.productName},'%' )
+    </if>
+
+    <if test="vo.sort.prductId !='' and vo.sort.prductId !=null">
+      order by prduct_id ${vo.sort.prductId}
+    </if>
+
+    <if test="vo.sort.productName != '' and vo.sort.productName != null">
+      order by product_name ${vo.sort.productName}
+    </if>
+  </select>
+</mapper>

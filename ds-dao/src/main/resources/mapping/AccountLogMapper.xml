@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.AccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.AccountLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="modify_amount" property="modifyAmount" jdbcType="DECIMAL" />
+    <result column="all_valid_amount" property="allValidAmount" jdbcType="DECIMAL" />
+    <result column="cash_valid_amount" property="cashValidAmount" jdbcType="DECIMAL" />
+    <result column="consume_valid_amount" property="consumeValidAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, start_time, end_time, account_id, customer_id, modify_amount, all_valid_amount, 
+    cash_valid_amount, consume_valid_amount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from account_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from account_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.AccountLog" >
+    insert into account_log (id, create_time, start_time, 
+      end_time, account_id, customer_id, 
+      modify_amount, all_valid_amount, cash_valid_amount, 
+      consume_valid_amount)
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{accountId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{modifyAmount,jdbcType=DECIMAL}, #{allValidAmount,jdbcType=DECIMAL}, #{cashValidAmount,jdbcType=DECIMAL}, 
+      #{consumeValidAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.AccountLog" >
+    insert into account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="modifyAmount != null" >
+        modify_amount,
+      </if>
+      <if test="allValidAmount != null" >
+        all_valid_amount,
+      </if>
+      <if test="cashValidAmount != null" >
+        cash_valid_amount,
+      </if>
+      <if test="consumeValidAmount != null" >
+        consume_valid_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyAmount != null" >
+        #{modifyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="allValidAmount != null" >
+        #{allValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValidAmount != null" >
+        #{cashValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeValidAmount != null" >
+        #{consumeValidAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.AccountLog" >
+    update account_log
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyAmount != null" >
+        modify_amount = #{modifyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="allValidAmount != null" >
+        all_valid_amount = #{allValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValidAmount != null" >
+        cash_valid_amount = #{cashValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeValidAmount != null" >
+        consume_valid_amount = #{consumeValidAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.AccountLog" >
+    update account_log
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      account_id = #{accountId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      modify_amount = #{modifyAmount,jdbcType=DECIMAL},
+      all_valid_amount = #{allValidAmount,jdbcType=DECIMAL},
+      cash_valid_amount = #{cashValidAmount,jdbcType=DECIMAL},
+      consume_valid_amount = #{consumeValidAmount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

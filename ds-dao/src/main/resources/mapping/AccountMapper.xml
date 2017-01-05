@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzfq.fms.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.jzfq.fms.domain.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="credit_id" property="creditId" jdbcType="INTEGER" />
+    <result column="closing_date" property="closingDate" jdbcType="TIMESTAMP" />
+    <result column="account_date" property="accountDate" jdbcType="TIMESTAMP" />
+    <result column="activated" property="activated" jdbcType="TINYINT" />
+    <result column="all_valid_amount" property="allValidAmount" jdbcType="DECIMAL" />
+    <result column="cash_valid_amount" property="cashValidAmount" jdbcType="DECIMAL" />
+    <result column="consume_valid_amount" property="consumeValidAmount" jdbcType="DECIMAL" />
+    <result column="all_init_amount" property="allInitAmount" jdbcType="DECIMAL" />
+    <result column="cash_init_amount" property="cashInitAmount" jdbcType="DECIMAL" />
+    <result column="consume_init_amount" property="consumeInitAmount" jdbcType="DECIMAL" />
+    <result column="cach_frozen_amount" property="cachFrozenAmount" jdbcType="DECIMAL" />
+    <result column="consume_frozen_amount" property="consumeFrozenAmount" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_id, credit_id, closing_date, account_date, activated, all_valid_amount, 
+    cash_valid_amount, consume_valid_amount, all_init_amount, cash_init_amount, consume_init_amount, 
+    cach_frozen_amount, consume_frozen_amount
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jzfq.fms.domain.Account" >
+    insert into account (id, customer_id, credit_id, 
+      closing_date, account_date, activated, 
+      all_valid_amount, cash_valid_amount, consume_valid_amount, 
+      all_init_amount, cash_init_amount, consume_init_amount, 
+      cach_frozen_amount, consume_frozen_amount, max_amount)
+    values (#{id,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{creditId,jdbcType=INTEGER}, 
+      #{closingDate,jdbcType=TIMESTAMP}, #{accountDate,jdbcType=TIMESTAMP}, #{activated,jdbcType=TINYINT}, 
+      #{allValidAmount,jdbcType=DECIMAL}, #{cashValidAmount,jdbcType=DECIMAL}, #{consumeValidAmount,jdbcType=DECIMAL}, 
+      #{allInitAmount,jdbcType=DECIMAL}, #{cashInitAmount,jdbcType=DECIMAL}, #{consumeInitAmount,jdbcType=DECIMAL}, 
+      #{cachFrozenAmount,jdbcType=DECIMAL}, #{consumeFrozenAmount,jdbcType=DECIMAL}, #{maxAmount,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzfq.fms.domain.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="creditId != null" >
+        credit_id,
+      </if>
+      <if test="closingDate != null" >
+        closing_date,
+      </if>
+      <if test="accountDate != null" >
+        account_date,
+      </if>
+      <if test="activated != null" >
+        activated,
+      </if>
+      <if test="allValidAmount != null" >
+        all_valid_amount,
+      </if>
+      <if test="cashValidAmount != null" >
+        cash_valid_amount,
+      </if>
+      <if test="consumeValidAmount != null" >
+        consume_valid_amount,
+      </if>
+      <if test="allInitAmount != null" >
+        all_init_amount,
+      </if>
+      <if test="cashInitAmount != null" >
+        cash_init_amount,
+      </if>
+      <if test="consumeInitAmount != null" >
+        consume_init_amount,
+      </if>
+      <if test="cachFrozenAmount != null" >
+        cach_frozen_amount,
+      </if>
+      <if test="consumeFrozenAmount != null" >
+        consume_frozen_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="creditId != null" >
+        #{creditId,jdbcType=INTEGER},
+      </if>
+      <if test="closingDate != null" >
+        #{closingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountDate != null" >
+        #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activated != null" >
+        #{activated,jdbcType=TINYINT},
+      </if>
+      <if test="allValidAmount != null" >
+        #{allValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValidAmount != null" >
+        #{cashValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeValidAmount != null" >
+        #{consumeValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="allInitAmount != null" >
+        #{allInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashInitAmount != null" >
+        #{cashInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeInitAmount != null" >
+        #{consumeInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cachFrozenAmount != null" >
+        #{cachFrozenAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeFrozenAmount != null" >
+        #{consumeFrozenAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzfq.fms.domain.Account" >
+    update account
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="creditId != null" >
+        credit_id = #{creditId,jdbcType=INTEGER},
+      </if>
+      <if test="closingDate != null" >
+        closing_date = #{closingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountDate != null" >
+        account_date = #{accountDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activated != null" >
+        activated = #{activated,jdbcType=TINYINT},
+      </if>
+      <if test="allValidAmount != null" >
+        all_valid_amount = #{allValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashValidAmount != null" >
+        cash_valid_amount = #{cashValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeValidAmount != null" >
+        consume_valid_amount = #{consumeValidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="allInitAmount != null" >
+        all_init_amount = #{allInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashInitAmount != null" >
+        cash_init_amount = #{cashInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeInitAmount != null" >
+        consume_init_amount = #{consumeInitAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cachFrozenAmount != null" >
+        cach_frozen_amount = #{cachFrozenAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeFrozenAmount != null" >
+        consume_frozen_amount = #{consumeFrozenAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzfq.fms.domain.Account" >
+    update account
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      credit_id = #{creditId,jdbcType=INTEGER},
+      closing_date = #{closingDate,jdbcType=TIMESTAMP},
+      account_date = #{accountDate,jdbcType=TIMESTAMP},
+      activated = #{activated,jdbcType=TINYINT},
+      all_valid_amount = #{allValidAmount,jdbcType=DECIMAL},
+      cash_valid_amount = #{cashValidAmount,jdbcType=DECIMAL},
+      consume_valid_amount = #{consumeValidAmount,jdbcType=DECIMAL},
+      all_init_amount = #{allInitAmount,jdbcType=DECIMAL},
+      cash_init_amount = #{cashInitAmount,jdbcType=DECIMAL},
+      consume_init_amount = #{consumeInitAmount,jdbcType=DECIMAL},
+      cach_frozen_amount = #{cachFrozenAmount,jdbcType=DECIMAL},
+      consume_frozen_amount = #{consumeFrozenAmount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByCustomerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from account
+    where customer_id = #{customerId,jdbcType=INTEGER}
+  </select>
+
+</mapper>
