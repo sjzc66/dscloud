@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.jzfq.fms</groupId>
-        <artifactId>fms</artifactId>
+        <groupId>com.jzfq.ds</groupId>
+        <artifactId>ds</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>fms-web</artifactId>
+    <artifactId>ds-web</artifactId>
     <packaging>war</packaging>
-    <name>fms-web</name>
+    <name>ds-web</name>
 
     <properties>
         <junit.version>4.11</junit.version>
@@ -29,8 +29,8 @@
             <version>2.3.2</version>
         </dependency>
         <dependency>
-            <groupId>com.jzfq.fms</groupId>
-            <artifactId>fms-service</artifactId>
+            <groupId>com.jzfq.ds</groupId>
+            <artifactId>ds-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -95,7 +95,7 @@
     </dependencies>
 
     <build>
-        <finalName>fms</finalName>
+        <finalName>ds</finalName>
         <filters>
             <filter>src/main/resources/filter/deploy_config.properties</filter>
             <filter>src/main/resources/filter/deploy_jdbc.properties</filter>

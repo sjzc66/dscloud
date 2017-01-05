@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.jzfq.fms</groupId>
-    <artifactId>fms</artifactId>
+    <groupId>com.jzfq.ds</groupId>
+    <artifactId>ds</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>fms-worker</artifactId>
+  <artifactId>ds-worker</artifactId>
   <packaging>war</packaging>
    
   <properties>
@@ -15,8 +15,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.jzfq.fms</groupId>
-			<artifactId>fms-service</artifactId>
+			<groupId>com.jzfq.ds</groupId>
+			<artifactId>ds-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
@@ -46,7 +46,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>fmsworker</finalName>
+		<finalName>dsworker</finalName>
 		<filters>
 			<filter>src/main/resources/filter/deploy_config.properties</filter>
 			<filter>src/main/resources/filter/deploy_jdbc.properties</filter>

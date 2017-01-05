@@ -3,22 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.jzfq.fms</groupId>
-    <artifactId>fms</artifactId>
+    <groupId>com.jzfq.ds</groupId>
+    <artifactId>ds</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>fms</name>
+    <name>ds</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
-        <module>fms-web</module>
-        <module>fms-service</module>
-        <module>fms-common</module>
-        <module>fms-domain</module>
-        <module>fms-dao</module>
-        <module>fms-rpc</module>
-        <module>fms-worker</module>
+        <module>ds-web</module>
+        <module>ds-service</module>
+        <module>ds-common</module>
+        <module>ds-domain</module>
+        <module>ds-dao</module>
+        <module>ds-rpc</module>
+        <module>ds-worker</module>
     </modules>
 
     <build>

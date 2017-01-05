@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.jzfq.fms</groupId>
-    <artifactId>fms</artifactId>
+    <groupId>com.jzfq.ds</groupId>
+    <artifactId>ds</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>fms-service</artifactId>
-  <name>fms-service</name>
+  <artifactId>ds-service</artifactId>
+  <name>ds-service</name>
   <properties>
 		<!-- spring版本号 -->
 		<spring.version>4.0.5.RELEASE</spring.version>
@@ -25,13 +25,13 @@
 	</properties>
   <dependencies>
 		<dependency>
-			<groupId>com.jzfq.fms</groupId>
-			<artifactId>fms-dao</artifactId>
+			<groupId>com.jzfq.ds</groupId>
+			<artifactId>ds-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jzfq.fms</groupId>
-			<artifactId>fms-common</artifactId>
+			<groupId>com.jzfq.ds</groupId>
+			<artifactId>ds-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
